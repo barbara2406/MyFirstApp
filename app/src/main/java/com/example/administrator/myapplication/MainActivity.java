@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,20 @@ public class MainActivity extends AppCompatActivity {
 
     int cont =0;
     TextView text;
+    Button result;
+
+    public void init(){
+        result =  (Button)findViewById(R.id.result);
+
+        result.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent res = new Intent(MainActivity.this, Result.class);
+                res.putExtra("RESULT", cont);
+                startActivity(res);
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 text.setText(Integer.toString(cont));
             }
         });
+
+        init();
     }
 }
